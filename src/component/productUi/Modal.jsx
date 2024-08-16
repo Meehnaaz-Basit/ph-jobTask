@@ -39,19 +39,34 @@ const Modal = ({ isVisible, onClose, product, renderStars }) => {
         </button>
         <div className="flex items-center">
           <div className="basis-2/5 mr-8">
-            <img src={image} className="w-80" alt={name} />
+            <img src={image} className="w-80 object-contain" alt={name} />
           </div>
           <div className="basis-3/5 border-l-2 ">
-            <div className="ml-8">
-              <h2>{name}</h2>
-              <p className="">{description}</p>
-              <p>Brand : {brand}</p>
-              <p>Category : {category}</p>
-              <p>
-                Launched on : {formattedDate} {formattedTime}
+            <div className="ml-8 space-y-2">
+              <h2 className="font-bold text-xl text-purple-600">{name}</h2>
+              <p className="">
+                {" "}
+                <span className="font-semibold">Description :</span>{" "}
+                {description}
               </p>
-              <p className="flex">Rating : {renderStars(ratings)}</p>
-              <p>Price : {price}</p>
+              <p>
+                <span className="font-semibold">Brand :</span> {brand}
+              </p>
+              <p>
+                <span className="font-semibold">Category :</span> {category}
+              </p>
+              <p>
+                <span className="font-semibold">Launched on :</span>{" "}
+                {formattedDate} {formattedTime}
+              </p>
+              <p className="flex">
+                <span className="font-semibold">Rating :</span>{" "}
+                {renderStars(ratings)}
+              </p>
+              <p>
+                <span className="font-semibold">Price :</span>{" "}
+                <span className="text-purple-500 font-semibold">{price}</span>
+              </p>
             </div>
           </div>
         </div>

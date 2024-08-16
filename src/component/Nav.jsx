@@ -10,11 +10,11 @@ const Nav = () => {
   const navRoute = (
     <>
       <NavLink
-        to="/"
+        to="/home"
         className={({ isActive }) =>
           isActive
-            ? " border-b-2 border-teal-700 text-teal-500 bg-transparent py-2 px-3 mx-2  font-bold"
-            : "border-b-2 border-transparent  py-2 px-3 mx-2 font-bold hover:border-teal-500 hover:text-teal-500 hover:bg-transparent transition-all"
+            ? " border-b-2 border-purple-700 text-purple-500 bg-transparent py-2 px-3 mx-2  font-bold"
+            : "border-b-2 border-transparent  py-2 px-3 mx-2 font-bold hover:border-purple-500 hover:text-purple-500 hover:bg-transparent transition-all"
         }
       >
         Home
@@ -53,7 +53,7 @@ const Nav = () => {
           </div>
           <a
             href="/"
-            className=" lg:text-4xl text-2xl flex gap-2 items-center font-bold font-pacifico text-teal-500"
+            className=" lg:text-4xl text-2xl flex gap-2 items-center font-bold font-pacifico text-purple-500"
           >
             <img
               src="https://i.ibb.co/kymMhSP/peculiar-path-bd-removebg-preview.png"
@@ -61,7 +61,7 @@ const Nav = () => {
               className="md:w-20 w-12"
               style={{ animation: "spin 6s linear infinite" }}
             />
-            PeculiarPathBD
+            ShopTech
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">

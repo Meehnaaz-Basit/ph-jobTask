@@ -6,6 +6,8 @@ import Brand from "../component/leftSide/Brand";
 import Category from "../component/leftSide/Category";
 import Sort from "../component/Sort";
 import Search from "../component/Search";
+import Pagination from "../component/Pagination";
+import PriceRange from "../component/leftSide/PriceRange";
 
 const Home = () => {
   const axiosCommon = useAxiosCommon();
@@ -78,23 +80,21 @@ const Home = () => {
   if (isLoading) return <>Loading products .... </>;
 
   return (
-    <div>
-      <h2>This is home</h2>
-
-      <div className="flex md:p-8">
-        <div className="md:basis-1/5 basis-1/3 bg-red-400 md:p-4 h-5">
-          <div>
-            {/* Uncomment if needed */}
-            {/* <PriceRange /> */}
-          </div>
+    <div className="">
+      <div className="flex md:p-8 ">
+        <div className="md:basis-1/5 basis-1/3  md:p-4 h-5">
           <div className="mt-6">
             <Brand onBrandChange={setSelectedBrands} />
           </div>
           <div className="mt-6">
             <Category onCategoryChange={setSelectedCategories} />
           </div>
+          <div className="mt-6">
+            {/* Uncomment if needed */}
+            <PriceRange />
+          </div>
         </div>
-        <div className="md:basis-4/5 basis-2/3 bg-green-400 md:p-4 h-5">
+        <div className="md:basis-4/5 basis-2/3  md:p-4 h-5">
           <div className="flex justify-between items-center mt-6">
             <Search onSearch={handleSearchChange} />
             <Sort onSortChange={handleSortChange} />
@@ -110,6 +110,10 @@ const Home = () => {
               ))
             )}
           </div>
+          <div className="flex justify-center ">
+            <Pagination></Pagination>
+          </div>
+          <br />
         </div>
       </div>
     </div>

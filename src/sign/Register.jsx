@@ -47,7 +47,7 @@ const Register = () => {
       axiosCommon.post("/users", userInfo).then((res) => {
         console.log("Response from API:", res.data);
         if (res.data.insertedId) {
-          navigate("/");
+          navigate("/home");
           toast.success("Signup Successful, user added");
         }
       });
@@ -69,7 +69,7 @@ const Register = () => {
 
       axiosCommon.post("/users", userInfo).then((res) => {
         if (res.data.insertedId) {
-          navigate("/");
+          navigate("/home");
           toast.success("Signup Successful, user added");
         }
       });

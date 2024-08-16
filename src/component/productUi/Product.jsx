@@ -26,11 +26,11 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-gray-100 mx-2 my-2 rounded-md p-6 relative  my-card">
+    <div className="flex flex-col items-center bg-purple-50 mx-2 my-2 rounded-md p-6 relative  my-card">
       <div className="img-card">
         <img
           src={image}
-          className="w-52 h-52 rounded-md object-cover"
+          className="w-52 h-52 rounded-md object-contain"
           alt={name}
         />
       </div>
@@ -48,7 +48,7 @@ const Product = ({ product }) => {
         // onClick={() => setIsModalVisible(true)}
       >
         <FaEye
-          className="text-green-400 text-5xl "
+          className="text-white text-5xl "
           onClick={() => setIsModalVisible(true)}
         />
       </div>
@@ -58,7 +58,7 @@ const Product = ({ product }) => {
         renderStars={renderStars}
         onClose={() => setIsModalVisible(false)}
       ></Modal>
-      <div className="my-opacity absolute top-0  bg-gray-200 opacity-60 h-full w-0 rounded-md"></div>
+      <div className="my-opacity absolute top-0  bg-purple-500 opacity-40 h-full w-0 rounded-md"></div>
     </div>
   );
 };
