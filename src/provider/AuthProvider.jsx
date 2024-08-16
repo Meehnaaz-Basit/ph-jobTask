@@ -30,16 +30,42 @@ const AuthProvider = ({ children }) => {
   };
 
   //
-  const logIn = (email, password) => {
+  // const logIn = (email, password) => {
+  //   setLoading(true);
+  //   // console.log("login");
+  //   return signInWithEmailAndPassword(auth, email, password);
+  // };
+
+  // Updated logIn function
+  const logIn = async (email, password) => {
     setLoading(true);
-    // console.log("login");
-    return signInWithEmailAndPassword(auth, email, password);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      window.location.href = "/home"; // Redirect to "/home"
+    } catch (error) {
+      console.error("Error during login:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const logOut = () => {
+  // const logOut = () => {
+  //   setLoading(true);
+  //   // console.log("logout");
+  //   return signOut(auth);
+  // };
+
+  // Updated logOut function
+  const logOut = async () => {
     setLoading(true);
-    // console.log("logout");
-    return signOut(auth);
+    try {
+      await signOut(auth);
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Error during sign out:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {

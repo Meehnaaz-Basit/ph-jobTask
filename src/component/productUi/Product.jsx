@@ -45,9 +45,12 @@ const Product = ({ product }) => {
       </div> */}
       <div
         className="absolute z-10 inset-0 flex items-center justify-center cursor-pointer my-view"
-        onClick={() => setIsModalVisible(true)}
+        // onClick={() => setIsModalVisible(true)}
       >
-        <FaEye className="text-green-400 text-5xl " />
+        <FaEye
+          className="text-green-400 text-5xl "
+          onClick={() => setIsModalVisible(true)}
+        />
       </div>
       <Modal
         isVisible={isModalVisible}

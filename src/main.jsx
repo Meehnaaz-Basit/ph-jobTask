@@ -10,15 +10,20 @@ import AuthProvider from "./provider/AuthProvider";
 import Login from "./sign/Login";
 import Register from "./sign/Register";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Welcome from "./pages/welcome/Welcome";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Welcome></Welcome>,
+  },
+  {
+    path: "/home",
     element: <Main></Main>,
     children: [
       {
-        path: "/",
+        path: "/home",
         element: <Home></Home>,
       },
     ],

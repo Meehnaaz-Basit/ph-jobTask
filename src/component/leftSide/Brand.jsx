@@ -6,6 +6,7 @@ const Brand = ({ onBrandChange }) => {
   const [selectedBrands, setSelectedBrands] = useState([]);
 
   const handleCheckboxChange = (event) => {
+    event.preventDefault();
     const brand = event.target.value;
     setSelectedBrands((prevSelected) =>
       prevSelected.includes(brand)

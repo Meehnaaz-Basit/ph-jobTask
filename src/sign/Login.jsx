@@ -11,7 +11,7 @@ const Login = () => {
   const [pageLoading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state || "/";
+  const from = location?.state || "/home";
   const { loginWithGoogle, logIn, loading } = useContext(AuthContext);
   const [email, setEmail] = useState("");
 
@@ -34,20 +34,56 @@ const Login = () => {
     }
   };
 
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     const result = await loginWithGoogle();
+  //     const user = result.user;
+
+  //     // send user to db
+  //     const userInfo = { name: user.displayName, email: user.email };
+
+  //     axiosCommon.post("/users", userInfo).then((res) => {
+  //       if (res.data.insertedId) {
+  //         navigate("/home");
+  //         toast.success("Signup Successful, user added");
+  //       }
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //     toast.error(err.message);
+  //   }
+  // };
+
   const handleGoogleSignIn = async () => {
     try {
       const result = await loginWithGoogle();
       const user = result.user;
 
-      // send user to db
-      const userInfo = { name: user.displayName, email: user.email };
+      // Check if the user already exists
+      try {
+        const response = await axiosCommon.post("/users/check", {
+          email: user.email,
+        });
 
-      axiosCommon.post("/users", userInfo).then((res) => {
-        if (res.data.insertedId) {
-          navigate("/");
-          toast.success("Signup Successful, user added");
+        if (response.data.exists) {
+          // User already exists, redirect to home
+          navigate("/home");
+          toast.success("Welcome back");
+        } else {
+          // User does not exist, add user to the database
+          const addUserResponse = await axiosCommon.post("/users", {
+            name: user.displayName,
+            email: user.email,
+          });
+          if (addUserResponse.data.insertedId) {
+            navigate("/home");
+            toast.success("Sign up Successfully");
+          }
         }
-      });
+      } catch (error) {
+        console.error("Error checking user existence:", error);
+        toast.error("Error checking user existence");
+      }
     } catch (err) {
       console.log(err);
       toast.error(err.message);
