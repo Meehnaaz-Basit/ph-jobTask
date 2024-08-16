@@ -1,0 +1,22 @@
+.my-card:hover .my-opacity {
+  width: 100%;
+  transition: width 0.3s ease-in-out;
+}
+
+.img-card {
+}
+.my-des {
+}
+.my-view {
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.my-card:hover .my-view {
+  transform: scale(1.5); /* Grow the icon */
+  opacity: 1; /* Make it fully visible */
+}
+.my-opacity {
+  transition: width 0.3s ease-in-out;
+}
