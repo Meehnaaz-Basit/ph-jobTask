@@ -30,17 +30,17 @@ const Category = ({ onCategoryChange }) => {
 
   return (
     <div className="mt-4">
-      <h2 className="text-lg font-semibold">Select Category(s)</h2>
+      <h2 className="font-bold md:text-lg text-sm">Select Category(s)</h2>
       {categories.map((category) => (
         <div key={category} className="flex items-center gap-2 my-2">
           <input
             type="checkbox"
-            className="w-6 h-6"
+            className="md:w-6 md:h-6 w-4 h-4"
             value={category}
             checked={selectedCategories.includes(category)}
             onChange={handleCheckboxChange}
           />
-          <label className="text-base">{category}</label>
+          <label className="md:text-base text-sm">{category}</label>
         </div>
       ))}
     </div>

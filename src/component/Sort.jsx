@@ -4,7 +4,7 @@ const Sort = ({ onSortChange }) => {
   };
 
   return (
-    <div>
+    <div className="md:mb-0 mb-6">
       <select onChange={handleSortChange}>
         <option value="">Sort By</option>
         <option value="priceLowToHigh">Price: Low to High</option>

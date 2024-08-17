@@ -30,18 +30,22 @@ const Modal = ({ isVisible, onClose, product, renderStars }) => {
   if (!isVisible) return null;
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg relative flex justify-center items-center max-w-4xl h-2/4">
+      <div className="bg-white p-8 rounded-lg shadow-lg relative flex justify-center items-center lg:max-w-4xl md:max-w-2xl max-w-md md:m-0 m-4 md:h-2/4 h-auto">
         <button
           className="absolute top-2 right-5 text-gray-600 hover:text-gray-800 text-3xl"
           onClick={onClose}
         >
           &times;
         </button>
-        <div className="flex items-center">
+        <div className="flex md:flex-row flex-col items-center">
           <div className="basis-2/5 mr-8">
-            <img src={image} className="w-80 object-contain" alt={name} />
+            <img
+              src={image}
+              className="md:w-80 w-56 object-contain"
+              alt={name}
+            />
           </div>
-          <div className="basis-3/5 border-l-2 ">
+          <div className="basis-3/5 md:border-l-2 border-none ">
             <div className="ml-8 space-y-2">
               <h2 className="font-bold text-xl text-purple-600">{name}</h2>
               <p className="">

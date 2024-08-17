@@ -18,8 +18,8 @@ const PriceRange = ({ onPriceChange }) => {
 
   return (
     <div className="w-full max-w-xs mx-auto">
-      <h2 className=" text-lg font-semibold">Select Price Range</h2>
-      <div className="flex gap-4">
+      <h2 className=" md:text-lg text-sm font-bold mb-4">Select Price Range</h2>
+      <div className="flex md:flex-row flex-col gap-3">
         <input
           type="number"
           placeholder="Min Price"

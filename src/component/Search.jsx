@@ -6,8 +6,8 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <div>
-      <label className="input input-bordered flex items-center gap-2">
+    <div className="md:mb-0 mb-6">
+      <label className="input md:input-md input-sm input-bordered flex items-center gap-2">
         <input
           type="text"
           className="grow"

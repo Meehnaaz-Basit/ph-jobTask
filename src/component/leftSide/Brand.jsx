@@ -21,17 +21,17 @@ const Brand = ({ onBrandChange }) => {
 
   return (
     <div>
-      <h2>Select Brand(s)</h2>
+      <h2 className="font-bold md:text-lg text-sm">Select Brand(s)</h2>
       {brands.map((brand) => (
         <div key={brand} className="flex items-center gap-2 my-2">
           <input
             type="checkbox"
-            className="w-6 h-6"
+            className="md:w-6 md:h-6 w-4 h-4"
             value={brand}
             checked={selectedBrands.includes(brand)}
             onChange={handleCheckboxChange}
           />
-          <label className="text-base">{brand}</label>
+          <label className="md:text-base text-sm">{brand}</label>
         </div>
       ))}
     </div>

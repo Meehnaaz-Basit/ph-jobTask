@@ -57,7 +57,7 @@ const Welcome = () => {
           <svg
             viewBox="0 0 200 200"
             xmlns="http://www.w3.org/2000/svg"
-            className="lg:w-[600px] lg:h-full"
+            className="lg:w-[600px] md:w-[500px] w-[380px] lg:h-full"
           >
             <path
               fill="#8A3FFC"
@@ -66,8 +66,8 @@ const Welcome = () => {
             />
           </svg>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white">
-            <h2 className="text-2xl bloom-animation"> Welcome to</h2>
-            <h1 className="text-5xl font-black">
+            <h2 className="md:text-2xl text-xl bloom-animation"> Welcome to</h2>
+            <h1 className="md:text-5xl text-3xl font-black">
               <span className="letter">S</span>
               <span className="letter">h</span>
               <span className="letter">o</span>
@@ -80,7 +80,9 @@ const Welcome = () => {
           </div>
         </div>
         <div className="text-container text-purple-600 opacity-0 mt-4">
-          <p className="text-lg">Here you will find all your necessary items</p>
+          <p className="md:text-lg text-base">
+            Here you will find all your necessary items
+          </p>
           <div className="flex gap-8 items-center justify-center mt-4">
             <Link to="/login" className="">
               Login
