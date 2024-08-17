@@ -1,4 +1,9 @@
-const Pagination = () => {
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  const handleClick = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      onPageChange(page);
+    }
+  };
   return (
     <div>
       <nav aria-label="Page navigation example">
@@ -6,7 +11,8 @@ const Pagination = () => {
           <li>
             <a
               href="#"
-              className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 "
+              onClick={() => handleClick(currentPage - 1)}
+              className="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="sr-only">Previous</span>
               <svg
@@ -26,51 +32,27 @@ const Pagination = () => {
               </svg>
             </a>
           </li>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+            <li key={page}>
+              <a
+                href="#"
+                onClick={() => handleClick(page)}
+                aria-current={currentPage === page ? "page" : undefined}
+                className={`flex items-center justify-center px-4 h-10 leading-tight ${
+                  currentPage === page
+                    ? "z-10 text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700"
+                    : "text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                }`}
+              >
+                {page}
+              </a>
+            </li>
+          ))}
           <li>
             <a
               href="#"
-              className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 "
-            >
-              1
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 "
-            >
-              2
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              aria-current="page"
-              className="z-10 flex items-center justify-center px-4 h-10 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-            >
-              3
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 "
-            >
-              4
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 "
-            >
-              5
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 "
+              onClick={() => handleClick(currentPage + 1)}
+              className="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
             >
               <span className="sr-only">Next</span>
               <svg

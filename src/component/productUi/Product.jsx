@@ -26,11 +26,11 @@ const Product = ({ product }) => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-purple-50 mx-2 my-2 rounded-md p-6 relative  my-card">
+    <div className="flex flex-col items-center bg-purple-50 mx-2 my-2 rounded-md md:p-6 p-2 relative  my-card">
       <div className="img-card">
         <img
           src={image}
-          className="w-52 h-52 rounded-md object-contain"
+          className="md:w-52 md:h-52 w-36 h-36 rounded-md object-contain"
           alt={name}
         />
       </div>
@@ -48,7 +48,7 @@ const Product = ({ product }) => {
         // onClick={() => setIsModalVisible(true)}
       >
         <FaEye
-          className="text-white text-5xl "
+          className="text-white md:text-5xl text-3xl"
           onClick={() => setIsModalVisible(true)}
         />
       </div>

@@ -17,6 +17,7 @@ const Home = () => {
   const [sortOption, setSortOption] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isSorting, setIsSorting] = useState(false);
+  const [priceRange, setPriceRange] = useState({ min: "", max: "" });
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ["products"],
@@ -48,9 +49,16 @@ const Home = () => {
         product.name.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
+    if (priceRange.min !== "" && priceRange.max !== "") {
+      filtered = filtered.filter(
+        (product) =>
+          product.price >= Number(priceRange.min) &&
+          product.price <= Number(priceRange.max)
+      );
+    }
 
     setFilteredProducts(filtered);
-  }, [products, selectedBrands, selectedCategories, searchQuery]);
+  }, [products, selectedBrands, selectedCategories, searchQuery, priceRange]);
 
   useEffect(() => {
     applyFiltersAndSorting();
@@ -62,6 +70,10 @@ const Home = () => {
 
   const handleSearchChange = (query) => {
     setSearchQuery(query);
+  };
+
+  const handlePriceChange = (min, max) => {
+    setPriceRange({ min, max });
   };
 
   // Apply sorting manually in the render logic
@@ -82,7 +94,7 @@ const Home = () => {
   return (
     <div className="">
       <div className="flex md:p-8 ">
-        <div className="md:basis-1/5 basis-1/3  md:p-4 h-5">
+        <div className="md:basis-1/5 basis-2/4  md:p-4 h-5">
           <div className="mt-6">
             <Brand onBrandChange={setSelectedBrands} />
           </div>
@@ -91,18 +103,18 @@ const Home = () => {
           </div>
           <div className="mt-6">
             {/* Uncomment if needed */}
-            <PriceRange />
+            <PriceRange onPriceChange={handlePriceChange} />
           </div>
         </div>
-        <div className="md:basis-4/5 basis-2/3  md:p-4 h-5">
+        <div className="md:basis-4/5 basis-2/4  md:p-4 h-5">
           <div className="flex justify-between items-center mt-6">
             <Search onSearch={handleSearchChange} />
             <Sort onSortChange={handleSortChange} />
           </div>
           <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-3 my-10">
             {sortedProducts.length === 0 ? (
-              <p className="text-center text-lg font-semibold">
-                No items available
+              <p className="text-center lg:col-span-3 md:col-span-2 col-span-1 bg-purple-50 h-52 flex justify-center items-center text-lg font-semibold">
+                No Product is available.
               </p>
             ) : (
               sortedProducts.map((product) => (
