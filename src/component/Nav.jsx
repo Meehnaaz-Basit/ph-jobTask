@@ -2,6 +2,7 @@
 import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "./../provider/AuthProvider";
+import logo from "./../../public/img/logo.png";
 
 const Nav = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -55,12 +56,7 @@ const Nav = () => {
             href="/"
             className=" lg:text-4xl text-2xl flex gap-2 items-center font-bold font-pacifico text-purple-500"
           >
-            <img
-              src="https://i.ibb.co/kymMhSP/peculiar-path-bd-removebg-preview.png"
-              alt="logo"
-              className="md:w-20 w-12"
-              style={{ animation: "spin 6s linear infinite" }}
-            />
+            <img src={logo} alt="logo" className="md:w-20 w-8 rounded-lg" />
             ShopTech
           </a>
         </div>
