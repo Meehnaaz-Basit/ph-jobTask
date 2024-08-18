@@ -142,6 +142,7 @@ const Register = () => {
                 placeholder="*******"
                 className="w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-purple-500 bg-gray-200 text-gray-900"
               />
+              <small className="text-gray-500">Minimum 6 digit is needed</small>
             </div>
           </div>
 
