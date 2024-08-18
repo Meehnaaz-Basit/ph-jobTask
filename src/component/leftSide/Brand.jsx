@@ -26,7 +26,7 @@ const Brand = ({ onBrandChange }) => {
         <div key={brand} className="flex items-center gap-2 my-2">
           <input
             type="checkbox"
-            className="md:w-6 md:h-6 w-4 h-4"
+            className="md:w-6 md:h-6 w-4 h-4 accent-purple-500"
             value={brand}
             checked={selectedBrands.includes(brand)}
             onChange={handleCheckboxChange}

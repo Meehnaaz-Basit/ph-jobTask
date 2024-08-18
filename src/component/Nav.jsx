@@ -54,9 +54,9 @@ const Nav = () => {
           </div>
           <a
             href="/"
-            className=" lg:text-4xl text-2xl flex gap-2 items-center font-bold font-pacifico text-purple-500"
+            className=" lg:text-4xl text-2xl flex gap-2 items-center font-bold font-pacifico text-purple-600"
           >
-            <img src={logo} alt="logo" className="md:w-20 w-8 rounded-lg" />
+            <img src={logo} alt="logo" className=" md:w-14 w-8 rounded-lg" />
             ShopTech
           </a>
         </div>
