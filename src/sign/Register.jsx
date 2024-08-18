@@ -52,7 +52,7 @@ const Register = () => {
         }
       });
     } catch (err) {
-      console.log("Error:", err.message); // Debugging step
+      console.log("Error:", err.message);
       toast.error(err.message);
     } finally {
       setLoading(false);
@@ -69,8 +69,8 @@ const Register = () => {
 
       axiosCommon.post("/users", userInfo).then((res) => {
         if (res.data.insertedId) {
-          navigate("/home");
           toast.success("Signup Successful, user added");
+          navigate("/home");
         }
       });
     } catch (err) {
