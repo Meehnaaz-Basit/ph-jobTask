@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const categories = [
-  "All",
+  // "All",
   "Laptop",
   "Tablet",
   "Accessories",

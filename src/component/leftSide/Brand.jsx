@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const brands = ["All", "Apple", "Samsung", "Dell", "Sony", "Bose"];
+const brands = ["Apple", "Samsung", "Dell", "Sony", "Bose"];
 
 const Brand = ({ onBrandChange }) => {
   const [selectedBrands, setSelectedBrands] = useState([]);

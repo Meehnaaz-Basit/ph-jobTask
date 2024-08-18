@@ -159,6 +159,7 @@ import Search from "../component/Search";
 import Pagination from "../component/Pagination";
 import PriceRange from "../component/leftSide/PriceRange";
 import Footer from "../component/Footer";
+import Loader from "../component/Loader";
 
 const Home = () => {
   const axiosCommon = useAxiosCommon();
@@ -185,88 +186,63 @@ const Home = () => {
     if (data) {
       console.log("API response data:", data);
 
-      const totalProducts = data.length;
       setProducts(data);
-      setTotalPages(Math.ceil(totalProducts / 10));
+      setTotalPages(Math.ceil(data.length / 10));
     } else {
       console.error("Data format is incorrect or empty.");
     }
   }, [data]);
 
   useEffect(() => {
-    // Step 1: Start with the complete list of products
-    let filteredProducts = [...products];
+    // Step 1: Apply filters
+    let filtered = products;
 
-    // Step 2: Filter by selected brands
+    // Filter by selected brands
     if (selectedBrands.length > 0) {
-      const filteredByBrand = [];
-      for (let product of filteredProducts) {
-        if (selectedBrands.includes(product.brand)) {
-          filteredByBrand.push(product);
-        }
-      }
-      filteredProducts = filteredByBrand;
+      filtered = filtered.filter((product) =>
+        selectedBrands.includes(product.brand)
+      );
     }
 
-    // Step 3: Filter by selected categories
+    // Filter by selected categories
     if (selectedCategories.length > 0) {
-      const filteredByCategory = [];
-      for (let product of filteredProducts) {
-        if (selectedCategories.includes(product.category)) {
-          filteredByCategory.push(product);
-        }
-      }
-      filteredProducts = filteredByCategory;
+      filtered = filtered.filter((product) =>
+        selectedCategories.includes(product.category)
+      );
     }
 
-    // Step 4: Filter by search query
+    // Filter by search query
     if (searchQuery) {
-      const filteredBySearch = [];
-      for (let product of filteredProducts) {
-        if (product.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-          filteredBySearch.push(product);
-        }
-      }
-      filteredProducts = filteredBySearch;
+      filtered = filtered.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
     }
 
-    // Step 5: Filter by price range
+    // Filter by price range
     if (priceRange.min || priceRange.max) {
-      const filteredByPrice = [];
-      for (let product of filteredProducts) {
+      filtered = filtered.filter((product) => {
         const price = parseFloat(product.price);
-        if (
-          (!priceRange.min || price >= priceRange.min) &&
-          (!priceRange.max || price <= priceRange.max)
-        ) {
-          filteredByPrice.push(product);
-        }
-      }
-      filteredProducts = filteredByPrice;
+        return (
+          (!priceRange.min || price >= parseFloat(priceRange.min)) &&
+          (!priceRange.max || price <= parseFloat(priceRange.max))
+        );
+      });
     }
 
-    // Step 6: Sort products
-    if (sortOption) {
-      if (sortOption === "price-asc") {
-        filteredProducts.sort((a, b) => a.price - b.price);
-      } else if (sortOption === "price-desc") {
-        filteredProducts.sort((a, b) => b.price - a.price);
-      }
+    // Step 2: Sort filtered products
+    if (sortOption === "priceLowToHigh") {
+      filtered.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
+    } else if (sortOption === "priceHighToLow") {
+      filtered.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
     }
 
-    // Step 7: Paginate results
+    // Step 3: Paginate results
     const productsPerPage = 10;
     const startIndex = (page - 1) * productsPerPage;
-    const paginatedProducts = filteredProducts.slice(
-      startIndex,
-      startIndex + productsPerPage
-    );
+    const paginated = filtered.slice(startIndex, startIndex + productsPerPage);
 
-    // Step 8: Update the state with the filtered and paginated products
-    setFilteredProducts(paginatedProducts);
-
-    // Step 9: Update the total pages count for pagination
-    setTotalPages(Math.ceil(filteredProducts.length / productsPerPage));
+    setFilteredProducts(paginated);
+    setTotalPages(Math.ceil(filtered.length / productsPerPage));
   }, [
     products,
     selectedBrands,
@@ -282,7 +258,7 @@ const Home = () => {
   const handlePriceChange = (min, max) => setPriceRange({ min, max });
   const handlePageChange = (newPage) => setPage(newPage);
 
-  if (isLoading) return <>Loading products ....</>;
+  if (isLoading) return <Loader />;
   if (error) return <>Error loading products.</>;
 
   return (
